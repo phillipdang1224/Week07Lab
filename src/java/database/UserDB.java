@@ -3,7 +3,6 @@ package database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.SQLException;
 import models.User;
@@ -14,37 +13,12 @@ import java.util.logging.Logger;
 public class UserDB {
     
     public int insert(User user) throws NotesDBException {
-        String preparedQuery = 
-        "INSERT INTO users "
-        + "(username, password, firstname, lastname, email) "
-        + "VALUES "
-        + "(?, ?, ?, ?, ?)";
-        PreparedStatement ps = connection.prepareStatement(preparedQuery);
-        ps.setString(1, user.getUsername());
-        ps.setString(2, user.getPassword());
-        ps.setString(3, user.getFirstname());
-        ps.setString(4, user.getLastname());
-        ps.setString(5, user.getEmail());
-        int rowsAffected = 0;
-        try {
-            rowsAffected = ps.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return rowsAffected;
-    }
+        return 0;
     }
     
-    /**
-     * 
-     * @param user the user to be updated
-     * @return either 1 or 0. 1 if a row was affected. 0 if no rows were affected.
-     * @throws NotesDBException 
-     */
-    public int update(User user) throws NotesDBException {
+    public int update(User user) throws NotesDBException, SQLException {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
-
         String preparedSQL = "UPDATE users SET"
                              + "    username = ?"
                              + "    password = ?"
