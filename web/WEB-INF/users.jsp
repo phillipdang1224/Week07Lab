@@ -53,6 +53,7 @@
                     <td><input type="text" name="email" value=""></td>
                 </tr>
             </table>
+            <input type="submit" name="action" value="Save">
         </form>
     </body>
 </html>
