@@ -3,7 +3,7 @@ CREATE DATABASE NotesDB;
 
 USE NotesDB;
 
-CREATE TABLE users(
+CREATE TABLE users (
     username VARCHAR(20) NOT NULL, 
     password VARCHAR(20) NOT NULL, 
     firstname VARCHAR(20), 
