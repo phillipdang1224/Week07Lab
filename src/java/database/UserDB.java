@@ -24,18 +24,6 @@ public class UserDB {
      * @throws NotesDBException 
      */
     public int update(User user) throws NotesDBException {
-        String preparedSQL = "UPDATE users SET"
-                             + "    username = ?"
-                             + "    password = ?"
-                             + "    firstname = ?"
-                             + "    lastname = ?"
-                             + "    email = ?";
-        PreparedStatement ps = connection.prepareStatement(preparedSQL);
-        ps.setString(1, users);
-        ps.setString(2, users);
-        ps.setString(3, users);
-        ps.setString(4, users);
-        ps.executeUpdate();
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
