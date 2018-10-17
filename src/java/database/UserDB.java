@@ -14,8 +14,25 @@ import java.util.logging.Logger;
 public class UserDB {
     
     public int insert(User user) throws NotesDBException {
-        // test
-        return 0;
+        String preparedQuery = 
+        "INSERT INTO users "
+        + "(username, password, firstname, lastname, email) "
+        + "VALUES "
+        + "(?, ?, ?, ?, ?)";
+        PreparedStatement ps = connection.prepareStatement(preparedQuery);
+        ps.setString(1, user.getUsername());
+        ps.setString(2, user.getPassword());
+        ps.setString(3, user.getFirstname());
+        ps.setString(4, user.getLastname());
+        ps.setString(5, user.getEmail());
+        int rowsAffected = 0;
+        try {
+            rowsAffected = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rowsAffected;
+    }
     }
     
     /**
