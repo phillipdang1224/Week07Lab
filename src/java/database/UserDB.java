@@ -1,5 +1,6 @@
 package database;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import models.User;
 import java.util.List;
