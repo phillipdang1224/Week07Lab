@@ -10,28 +10,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class User {
-    
-    public User getUser(String username) throws NotesDBException{
-        
-        ConnectionPool pool = ConnectionPool.getInstance();
-        Connection connection = pool.getConnection();
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ResultSet users = statement.executeQuery("SELECT * FROM users WHERE username = " + username);
-        User user = new User (users.getString(1), users.getString(2),users.getString(3),users.getString(4),users.getString(5));
+    private String username, password, firstname, lastname,email;
 
-    pool.freeConnection(connection);
-        
-        
-        
-        
-        
-        
-        return (user); 
+    public User(String username, String password, String firstname, String lastname, String email) {
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
     }
+
+
 
 }
