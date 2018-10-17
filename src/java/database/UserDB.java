@@ -1,5 +1,6 @@
 package database;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import models.User;
 import java.util.List;
@@ -11,6 +12,9 @@ public class UserDB {
     }
 
     public int update(User user) throws NotesDBException {
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+
         String preparedSQL = "UPDATE users SET"
                              + "    username = ?"
                              + "    password = ?"
@@ -18,11 +22,13 @@ public class UserDB {
                              + "    lastname = ?"
                              + "    email = ?";
         PreparedStatement ps = connection.prepareStatement(preparedSQL);
-        ps.setString(1, users);
-        ps.setString(2, users);
-        ps.setString(3, users);
-        ps.setString(4, users);
+        ps.setString(1, users.get());
+        ps.setString(2, users.get());
+        ps.setString(3, users.get());
+        ps.setString(4, users.get());
         ps.executeUpdate();
+        
+        pool.freeConnection(connection);
     }
 
     public List<User> getAll() throws NotesDBException {
