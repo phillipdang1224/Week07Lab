@@ -39,12 +39,16 @@ public class UserDB {
                              + "    firstname = ?"
                              + "    lastname = ?"
                              + "    email = ?";
-        PreparedStatement ps = connection.prepareStatement(preparedSQL);
-        ps.setString(1, users.get());
-        ps.setString(2, users.get());
-        ps.setString(3, users.get());
-        ps.setString(4, users.get());
-        ps.executeUpdate();
+        try {
+            PreparedStatement ps = connection.prepareStatement(preparedSQL);
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getFirstname());
+            ps.setString(4, user.getLastname());
+            ps.setString(5, user.getEmail());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
         
         pool.freeConnection(connection);
     }
