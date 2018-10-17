@@ -2,6 +2,9 @@ package database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.SQLException;
 import models.User;
 import java.util.List;
@@ -21,6 +24,18 @@ public class UserDB {
      * @throws NotesDBException 
      */
     public int update(User user) throws NotesDBException {
+        String preparedSQL = "UPDATE users SET"
+                             + "    username = ?"
+                             + "    password = ?"
+                             + "    firstname = ?"
+                             + "    lastname = ?"
+                             + "    email = ?";
+        PreparedStatement ps = connection.prepareStatement(preparedSQL);
+        ps.setString(1, users);
+        ps.setString(2, users);
+        ps.setString(3, users);
+        ps.setString(4, users);
+        ps.executeUpdate();
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
@@ -52,9 +67,22 @@ public class UserDB {
     public List<User> getAll() throws NotesDBException {
         return null;
     }
-    
-    public User getUser(String username) throws NotesDBException {
-        return null;
+
+    public User getUser(String username) throws NotesDBException, SQLException{
+        
+        ConnectionPool pool = ConnectionPool.getInstance();
+        Connection connection = pool.getConnection();
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ResultSet users = statement.executeQuery("SELECT * FROM users WHERE username = '" + username + "'");
+        User user = new User (users.getString(1), users.getString(2),users.getString(3),users.getString(4),users.getString(5));
+
+        pool.freeConnection(connection);
+        return (user); 
     }
     
     public int delete(User user) throws NotesDBException {
