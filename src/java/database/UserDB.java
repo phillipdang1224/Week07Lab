@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 public class UserDB {
     
     public int insert(User user) throws NotesDBException {
+        // test
         return 0;
     }
     
