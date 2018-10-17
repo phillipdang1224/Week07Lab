@@ -1,5 +1,6 @@
 package database;
 
+import java.sql.PreparedStatement;
 import models.User;
 import java.util.List;
 
@@ -10,7 +11,13 @@ public class UserDB {
     }
 
     public int update(User user) throws NotesDBException {
-        return 0;
+        String preparedSQL;
+        PreparedStatement ps = connection.prepareStatement(preparedSQL);
+        ps.setString(1, );
+        ps.setString(2, );
+        ps.setString(3, );
+        ps.setString(4, );
+        ps.executeUpdate();
     }
 
     public List<User> getAll() throws NotesDBException {
