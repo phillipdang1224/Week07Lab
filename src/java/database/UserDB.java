@@ -50,7 +50,7 @@ public class UserDB {
         ResultSet products = statement.executeQuery("Select username from users");
         while(products.next())
         {
-            
+           //processes each row
         }
         
     }
