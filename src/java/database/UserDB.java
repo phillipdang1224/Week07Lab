@@ -15,18 +15,6 @@ public class UserDB {
     }
     
     public int update(User user) throws NotesDBException {
-        String preparedSQL = "UPDATE users SET"
-                             + "    username = ?"
-                             + "    password = ?"
-                             + "    firstname = ?"
-                             + "    lastname = ?"
-                             + "    email = ?";
-        PreparedStatement ps = connection.prepareStatement(preparedSQL);
-        ps.setString(1, users);
-        ps.setString(2, users);
-        ps.setString(3, users);
-        ps.setString(4, users);
-        ps.executeUpdate();
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
 
@@ -36,12 +24,16 @@ public class UserDB {
                              + "    firstname = ?"
                              + "    lastname = ?"
                              + "    email = ?";
-        PreparedStatement ps = connection.prepareStatement(preparedSQL);
-        ps.setString(1, users.get());
-        ps.setString(2, users.get());
-        ps.setString(3, users.get());
-        ps.setString(4, users.get());
-        ps.executeUpdate();
+        try {
+            PreparedStatement ps = connection.prepareStatement(preparedSQL);
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getFirstname());
+            ps.setString(4, user.getLastname());
+            ps.setString(5, user.getEmail());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
         
         pool.freeConnection(connection);
     }
