@@ -44,12 +44,4 @@ public class ConnectionPool {
         }
         
     }
-    
-    public int delete(String username) throws SQLException{
-        String preparedQuery = "DELETE FROM USERS"
-                              + "WHERE user = ?";
-        PreparedStatement ps = connection.prepareStatement(preparedQuery);
-        ps.setString(1,username);
-        return ps.executeUpdate();
-    }
 }
