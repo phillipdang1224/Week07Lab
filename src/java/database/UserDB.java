@@ -11,7 +11,7 @@ public class UserDB {
     }
 
     public int update(User user) throws NotesDBException {
-        String preparedSQL;
+        String preparedSQL = "UPDATE users SET";
         PreparedStatement ps = connection.prepareStatement(preparedSQL);
         ps.setString(1, );
         ps.setString(2, );
