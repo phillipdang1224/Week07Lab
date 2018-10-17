@@ -24,6 +24,7 @@ public class UserDB {
                              + "    firstname = ?"
                              + "    lastname = ?"
                              + "    email = ?";
+        int rowCount = 0;
         try {
             PreparedStatement ps = connection.prepareStatement(preparedSQL);
             ps.setString(1, user.getUsername());
@@ -31,11 +32,14 @@ public class UserDB {
             ps.setString(3, user.getFirstname());
             ps.setString(4, user.getLastname());
             ps.setString(5, user.getEmail());
-            ps.executeUpdate();
+            
+            //returns 1 if has one row to update. returns 0 if no rows.
+            rowCount = ps.executeUpdate();
         } catch (SQLException e) {
         }
         
         pool.freeConnection(connection);
+        return rowCount;
     }
     
     public List<User> getAll() throws NotesDBException {
