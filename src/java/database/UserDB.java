@@ -53,8 +53,15 @@ public class UserDB {
         return rowCount;
     }
     
-    public List<User> getAll() throws NotesDBException {
-        return null;
+    public List<User> getAll() throws NotesDBException, SQLException {
+         
+        Statement statement = connection.createStatement();
+        ResultSet products = statement.executeQuery("Select username from users");
+        while(products.next())
+        {
+            
+        }
+        
     }
 
     public User getUser(String username) throws NotesDBException, SQLException{
