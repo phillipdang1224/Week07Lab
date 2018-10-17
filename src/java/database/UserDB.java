@@ -14,6 +14,12 @@ public class UserDB {
         return 0;
     }
     
+    /**
+     * 
+     * @param user the user to be updated
+     * @return either 1 or 0. 1 if a row was affected. 0 if no rows were affected.
+     * @throws NotesDBException 
+     */
     public int update(User user) throws NotesDBException {
         ConnectionPool pool = ConnectionPool.getInstance();
         Connection connection = pool.getConnection();
@@ -36,6 +42,7 @@ public class UserDB {
             //returns 1 if has one row to update. returns 0 if no rows.
             rowCount = ps.executeUpdate();
         } catch (SQLException e) {
+            throw new NotesDBException("SQLException encountered.");
         }
         
         pool.freeConnection(connection);
