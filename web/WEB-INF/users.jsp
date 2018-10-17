@@ -8,8 +8,8 @@
     </head>
     <body>
         <h1>Manage Users</h1>
-        <h2>Users</h2>
         <form action="users" method="post">
+            <h2>Users</h2>
             <table>
                 <tr>
                     <th>Username</th>
@@ -29,6 +29,29 @@
                     <th><input type="submit" name="action" value="Edit"></th>
                 </tr>
                 </c:forEach> 
+            </table>
+            <h2>Add User</h2>
+            <table>
+                <tr>
+                    <td>Username: </td>
+                    <td><input type="text" name="username" value=""></td>
+                </tr>
+                <tr>
+                    <td>First Name: </td>
+                    <td><input type="text" name="firstName" value=""></td>
+                </tr>
+                <tr>
+                    <td>Last Name: </td>
+                    <td><input type="text" name="lastName" value=""></td>
+                </tr>
+                <tr>
+                    <td>Password: </td>
+                    <td><input type="text" name="password" value=""></td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td><input type="text" name="email" value=""></td>
+                </tr>
             </table>
         </form>
     </body>
